@@ -1,12 +1,12 @@
-const btnE1 = document.getElementById("btn");
-const appE1 = document.getElementById("app");
+const btnEl = document.getElementById("btn");
+const appEl = document.getElementById("app");
 
 getNotes().forEach((note) => {
-  const noteE1 = createNoteE1(note.id, note.content);
-  appE1.insertBefore(noteE1, btnE1);
+  const noteEl = createNoteEl(note.id, note.content);
+  appEl.insertBefore(noteEl, btnEl);
 });
 
-function createNoteE1(id, content) {
+function createNoteEl(id, content) {
   const element = document.createElement("textarea");
   element.classList.add("note");
   element.placeholder = "Empty Note";
@@ -28,7 +28,7 @@ function createNoteE1(id, content) {
 function deleteNote(id, element) {
   const notes = getNotes().filter((note) => note.id != id);
   saveNote(notes);
-  appE1.removeChild(element);
+  appEl.removeChild(element);
 }
 
 function updateNote(id, content) {
@@ -44,8 +44,8 @@ function addNote() {
     id: Math.floor(Math.random() * 10000),
     content: "",
   };
-  const noteE1 = createNoteE1(noteObj.id, noteObj.content);
-  appE1.insertBefore(noteE1, btnE1);
+  const noteEl = createNoteEl(noteObj.id, noteObj.content);
+  appEl.insertBefore(noteEl, btnEl);
 
   notes.push(noteObj);
 
@@ -57,7 +57,7 @@ function saveNote(notes) {
 }
 
 function getNotes() {
-  JSON.parse(localStorage.getItem("note-app") || "[]");
+  return JSON.parse(localStorage.getItem("note-app") || "[]");
 }
 
-btnE1.addEventListener("click", addNote);
+btnEl.addEventListener("click", addNote);
